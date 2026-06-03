@@ -100,6 +100,12 @@ def _redact_language_label(language_label: str) -> str:
   return re.sub(r'gl-python/', '{LANGUAGE_LABEL}/', language_label)
 
 
+def _redact_sdk_usage_label(header_value: str) -> str:
+  return header_value.replace('google-genai-sdk/afc', '').replace(
+      'google-genai-sdk/chat', ''
+  ).strip()
+
+
 def _redact_request_headers(headers: dict[str, str]) -> dict[str, str]:
   """Redacts headers that should not be recorded."""
   redacted_headers = {}
@@ -107,13 +113,19 @@ def _redact_request_headers(headers: dict[str, str]) -> dict[str, str]:
     if header_name.lower() == 'x-goog-api-key':
       redacted_headers[header_name] = '{REDACTED}'
     elif header_name.lower() == 'user-agent':
-      redacted_headers[header_name] = _redact_language_label(
-          _redact_version_numbers(header_value)
+      redacted_headers[header_name] = _redact_sdk_usage_label(
+          _redact_language_label(
+              _redact_version_numbers(header_value)
+          )
       ).replace('agentplatform-genai-modules', 'vertex-genai-modules')
     elif header_name.lower() == 'x-goog-api-client':
-      redacted_headers[header_name] = _redact_language_label(
-          _redact_version_numbers(header_value)
-      ).replace('agentplatform-genai-modules', 'vertex-genai-modules')
+      redacted_headers[header_name] = _redact_sdk_usage_label(
+          _redact_language_label(
+              _redact_version_numbers(header_value)
+          )
+      ).replace(
+          'agentplatform-genai-modules', 'vertex-genai-modules'
+      )
     elif header_name.lower() == 'x-goog-user-project':
       continue
     elif header_name.lower() == 'authorization':
