@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.9.0](https://github.com/googleapis/python-genai/compare/v2.8.0...v2.9.0) (2026-06-06)
+
+
+### Features
+
+* Add ServiceTier to UsageMetadata ([45b4963](https://github.com/googleapis/python-genai/commit/45b4963f4cdc8dc01cffe85260c629e50595fbf9))
+* **interaction-api:** Add CodeMenderAgentConfig to the Interactions API AgentInteraction proto ([3900799](https://github.com/googleapis/python-genai/commit/39007990d1502f4daa8ed6f8642947437b6535f1))
+* **interaction-api:** Add presence_penalty, frequency_penalty, and cached_content to models.proto ([05f16fe](https://github.com/googleapis/python-genai/commit/05f16fea01d4c8bdc4d6ac9c2b7bbed11ada3aee))
+
+
+### Documentation
+
+* Regenerate docs for 2.8.0 ([93e7ab1](https://github.com/googleapis/python-genai/commit/93e7ab1e8851dd68e59368d49bc2e3695dfd5148))
+
 ## [2.8.0](https://github.com/googleapis/python-genai/compare/v2.7.0...v2.8.0) (2026-06-03)
 
 
